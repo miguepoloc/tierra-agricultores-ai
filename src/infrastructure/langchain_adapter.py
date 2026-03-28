@@ -41,7 +41,7 @@ class LangChainGeminiAdapter(IModelAdapter):
     permiten intercambiar implementaciones sin cambiar nada más.
     """
 
-    MODEL = "gemini-2.0-flash"
+    MODEL = "gemini-2.5-flash"
 
     def __init__(self) -> None:
         api_key = os.getenv("GEMINI_API_KEY")
