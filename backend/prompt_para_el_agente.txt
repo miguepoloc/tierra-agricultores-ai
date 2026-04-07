@@ -1,0 +1,6 @@
+Crea un issue en el repo miguepoloc/tierra-agricultores-ai con:
+- Título: "Agregar endpoint POST /productos con validación Pydantic"
+- Descripción: "Se necesita crear el endpoint para registrar nuevos productos
+  con validación de precio (mayor a 0), nombre (requerido) y categoría (enum).
+  Debe seguir el patrón FastAPI del proyecto."
+- Label: "enhancement"

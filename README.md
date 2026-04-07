@@ -1,81 +1,59 @@
-# Tierra de Agricultores — Asistente IA
+# Tierra de Agricultores AI — Monorepo
 
-Backend FastAPI con RAG simplificado y Factory Pattern para múltiples modelos de IA.
+Proyecto oficial de la plataforma **Tierra de Agricultores**, integrando un asistente de Inteligencia Artificial para potenciar el comercio justo entre agricultores y consumidores.
 
-Construido en el curso **Herramientas para el desarrollo de aplicaciones con IA**  
-Universidad del Magdalena — Ingeniería de Sistemas
+## 🏗️ Arquitectura del Proyecto
+
+Este repositorio utiliza una estructura de **Monorepo** para separar las responsabilidades de frontend y backend:
+
+- **/backend**: API robusta construida con **FastAPI** (Python). Implementa una arquitectura hexagonal simplificada con soporte multi-modelo (Gemini, OpenAI, Claude, DeepSeek) y RAG basado en archivos Markdown.
+- **/frontend**: Interfaz de usuario moderna y premium construida con **Next.js 14**, React y TypeScript. Enfocada en ofrecer una experiencia de chat fluida y atractiva.
 
 ---
 
-## Arquitectura
+## 🚀 Guía de Inicio Rápido
 
-```
-HTTP Request → FastAPI (main.py)
-    → ChatService (lógica de negocio)
-        → AIModelFactory (Factory Pattern)
-            → GeminiAdapter / OpenAIAdapter / ClaudeAdapter / DeepSeekAdapter
-                ← System Prompt = skills/asistente-tienda.md + knowledge/*.md
-```
+### 1. Requisitos Previos
+- Python 3.10+
+- Node.js 18+
+- Docker Desktop (para servicios adicionales como MCP)
 
-## Configuración rápida
-
+### 2. Configuración del Backend
 ```bash
-# 1. Clonar y entrar al proyecto
-git clone <url>
-cd tierra-agricultores-ai
-
-# 2. Entorno virtual
+cd backend
 python -m venv venv
-source venv/bin/activate   # Linux/Mac
-# venv\Scripts\activate    # Windows
-
-# 3. Instalar dependencias
+source venv/bin/activate  # En Windows: venv\Scripts\activate
 pip install -r requirements.txt
-
-# 4. Configurar claves
-cp .env.example .env
-# Editar .env con tu GEMINI_API_KEY (gratuita)
-
-# 5. Correr
+# Configura tu archivo .env con las API Keys necesarias
 uvicorn main:app --reload
 ```
 
-Documentación interactiva: http://localhost:8000/docs
-
-## Endpoints
-
-| Método | Ruta                   | Descripción                              |
-|--------|------------------------|------------------------------------------|
-| GET    | `/`                    | Health check                             |
-| POST   | `/chat`                | Pregunta simple sin historial            |
-| POST   | `/chat/con-historial`  | Pregunta con historial de conversación   |
-
-## Cambiar de proveedor de IA
-
-El proveedor se selecciona en el body del request — sin cambiar código:
-
-```json
-{ "pregunta": "¿Qué frutas tienen?", "provider": "gemini" }
-{ "pregunta": "¿Qué frutas tienen?", "provider": "openai" }
-{ "pregunta": "¿Qué frutas tienen?", "provider": "claude" }
-{ "pregunta": "¿Qué frutas tienen?", "provider": "deepseek" }
-```
-
-## Actualizar el conocimiento
-
-Editar los archivos en `knowledge/` — sin reescribir código:
-
-- `knowledge/plataforma.md` — información general
-- `knowledge/productos.md` — catálogo y precios
-- `knowledge/asociados.md` — cómo ser agricultor asociado
-- `knowledge/compradores.md` — cómo comprar
-
-## Despliegue en Vercel
-
+### 3. Configuración del Frontend
 ```bash
-npm i -g vercel
-vercel login
-vercel --prod
+cd frontend
+npm install
+# Crea un archivo .env.local
+echo "NEXT_PUBLIC_API_URL=http://localhost:8000" > .env.local
+npm run dev
 ```
 
-Agregar las variables de entorno en el dashboard de Vercel.
+---
+
+## 🛠️ Tecnologías Principales
+
+- **Frontend**: Next.js, React, TypeScript, Vanilla CSS (Design Tokens).
+- **Backend**: FastAPI, Pydantic v2, Python Dotenv.
+- **IA**: Google Gemini, OpenAI, Anthropic Claude, DeepSeek.
+- **Despliegue**: Optimizado para **Vercel**.
+
+---
+
+## 📖 Conocimiento del Asistente
+El asistente utiliza el contenido de `backend/knowledge/` y `backend/skills/` para responder preguntas específicas sobre:
+- Catálogo de productos (Ñame, Café, Cacao, etc.)
+- Perfiles de agricultores asociados.
+- Zonas de producción (Sierra Nevada, Ciénaga, Santa Marta).
+
+---
+
+© 2026 Tierra de Agricultores. Todos los derechos reservados.
