@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "tierra-agricultores": {
+      "command": "/Users/miguepoloc/Code/tierra-agricultores-ai/backend/venv/bin/python",
+      "args": ["/Users/miguepoloc/Code/tierra-agricultores-ai/backend/servidor_mcp.py"]
+    }
+  }
+}
